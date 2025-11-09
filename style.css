@@ -1,0 +1,721 @@
+/* ---------------- Reset ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------------- Cores e Fundo ---------------- */
+:root {
+  --roxo-escuro: #0b0b0b;
+  --roxo-medio: #1a001f;
+  --roxo-claro: #3c006b;
+  --branco: #fff;
+  --brilho: #b26cff;
+}
+
+body {
+  background: linear-gradient(135deg, #0b0b0b 0%, #1a001f 40%, #3c006b 100%);
+  color: var(--branco);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ---------------- Cabeçalho Novo ---------------- */
+.header {
+  width: 100%;
+  padding: 1.2rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(178, 108, 255, 0.05);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header:hover {
+  background: rgba(30, 30, 40, 0.7);
+  box-shadow: 0 0 30px rgba(178, 108, 255, 0.1);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brilho), transparent);
+  border-radius: 2px;
+  opacity: 0.8;
+  animation: glowLine 4s ease-in-out infinite;
+}
+
+@keyframes glowLine {
+  0%, 100% { width: 40%; opacity: 0.5; }
+  50% { width: 90%; opacity: 1; }
+}
+
+.nav a {
+  color: #eee;
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--brilho);
+  transition: width 0.3s ease;
+  border-radius: 5px;
+}
+
+.nav a:hover {
+  color: var(--brilho);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
+
+
+/* ---------------- Hero ---------------- */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fundo animado com brilho suave */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, #3c006b, #1a001f, #0b0b0b);
+  background-size: 300% 300%;
+  animation: moveGradient 12s ease infinite;
+  opacity: 0.9;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* brilho pulsante sutil */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(178, 108, 255, 0.15) 0%, transparent 70%);
+  animation: pulse 5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  padding: 0 1rem;
+}
+
+.hero-content h2 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.hero-content span {
+  color: var(--brilho);
+  text-shadow: 0 0 10px rgba(178, 108, 255, 0.9);
+}
+
+.hero-content p {
+  margin: 1.2rem 0 2rem;
+  font-weight: 300;
+  color: #ddd;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  background: linear-gradient(90deg, var(--roxo-claro), var(--brilho));
+  color: var(--branco);
+  font-weight: 500;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px rgba(178, 108, 255, 0.4);
+}
+
+.btn-cta:hover {
+  box-shadow: 0 0 25px rgba(178, 108, 255, 0.9);
+  transform: translateY(-3px);
+}
+
+/* ---------------- Serviços ---------------- */
+.services {
+  padding: 6rem 5% 4rem;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 2rem;
+  color: var(--brilho);
+  text-shadow: 0 0 10px rgba(178, 108, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(178, 108, 255, 0.3);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(178, 108, 255, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(178, 108, 255, 0.4);
+  border-color: var(--brilho);
+}
+
+.card h3 {
+  color: var(--brilho);
+  margin-bottom: 1rem;
+}
+
+.card p {
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* ---------------- Responsivo ---------------- */
+@media (max-width: 768px) {
+  .hero-content h2 {
+    font-size: 1.9rem;
+  }
+
+  .btn-cta {
+    padding: 0.8rem 1.8rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .services {
+    padding-top: 4rem;
+  }
+}/* ===== Projetos ===== */
+.projects {
+  padding: 6rem 5%;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(80, 0, 120, 0.2) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--brilho);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.section-subtitle {
+  color: #ccc;
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+
+/* ===== Grid ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* ===== Card ===== */
+.project-card {
+  background: linear-gradient(145deg, rgba(30, 0, 50, 0.9), rgba(10, 0, 20, 0.9));
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 15px rgba(140, 0, 255, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(200, 100, 255, 0.4);
+}
+
+/* ===== Imagem ===== */
+.project-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Info ===== */
+.project-info {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.project-info h3 {
+  color: var(--brilho);
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-info p {
+  color: #bfbfbf;
+  font-weight: 300;
+  margin-bottom: 1.2rem;
+}
+
+/* ===== Botão ===== */
+.project-card .btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background: linear-gradient(90deg, var(--roxo-medio), var(--brilho));
+  color: #fff;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.project-card .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px rgba(180, 90, 255, 0.4);
+}
+
+/* ===== Comentários ===== */
+.project-comment-box {
+  margin-top: 3rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #ccc;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+.project-comment-box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Animação suave ===== */
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(150, 50, 255, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(180, 90, 255, 0.4); }
+  100% { box-shadow: 0 0 10px rgba(150, 50, 255, 0.2); }
+}
+
+.project-card:hover {
+  animation: glow 2s ease infinite;
+}
+/* ===== Sobre Mim ===== */
+.about-section {
+  padding: 7rem 5%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto 5rem;
+}
+
+/* ===== Foto com brilho animado ===== */
+.about-img {
+  position: relative;
+  width: 280px;
+  height: 280px;
+}
+
+.about-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(170, 80, 255, 0.4);
+  transition: 0.4s ease;
+}
+
+.about-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(178, 108, 255, 0.6);
+}
+
+/* Brilho circular atrás da foto */
+.glow-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178,108,255,0.25), transparent 70%);
+  filter: blur(20px);
+  animation: pulseGlow 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.15); }
+}
+
+/* ===== Texto ===== */
+.about-text {
+  max-width: 520px;
+  text-align: left;
+  animation: fadeInRight 1.2s ease forwards;
+  opacity: 0;
+}
+
+.about-text h2 {
+  font-size: 2.2rem;
+  color: var(--brilho);
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 10px rgba(178, 108, 255, 0.5);
+}
+
+.about-text p {
+  color: #ccc;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.about-text strong {
+  color: var(--brilho);
+  font-weight: 500;
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+/* ===== Seção Freelance ===== */
+.freelance {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(178, 108, 255, 0.2);
+  padding: 3.5rem;
+  border-radius: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 0 25px rgba(178, 108, 255, 0.1);
+  transition: 0.3s ease;
+  animation: fadeUp 1s ease forwards;
+}
+
+.freelance:hover {
+  box-shadow: 0 0 30px rgba(178, 108, 255, 0.3);
+}
+
+.freelance h2 {
+  color: var(--brilho);
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+}
+
+.freelance p {
+  color: #ddd;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .about-img {
+    width: 220px;
+    height: 220px;
+  }
+
+  .freelance {
+    padding: 2.5rem;
+  }
+}
+
+
+/* ---------------- Rodapé Moderno ---------------- */
+.footer-modern {
+  background: rgba(15, 15, 25, 0.9);
+  color: #ddd;
+  padding: 60px 10%;
+  text-align: center;
+  border-top: 1px solid rgba(100, 0, 180, 0.3);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #8b3cff, #d1b2ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-info span {
+  color: #b57bff;
+  font-weight: 500;
+}
+
+.footer-social {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.footer-social a {
+  color: #bfaaff;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: #fff;
+  transform: scale(1.15);
+  text-shadow: 0 0 10px rgba(180, 100, 255, 0.6);
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .footer-logo {
+    font-size: 1.5rem;
+  }
+  .footer-socials {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* ---------------- Animação de entrada do cabeçalho ---------------- */
+.header {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeDown 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- Efeito ao rolar a página ---------------- */
+.header.scrolled {
+  background: rgba(15, 15, 25, 0.9);
+  box-shadow: 0 4px 25px rgba(178, 108, 255, 0.15);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+/* ---------------- Botão Voltar ao Topo ---------------- */
+#btn-topo {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(120, 0, 255, 0.85), rgba(200, 150, 255, 0.7));
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(150, 80, 255, 0.4);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  display: none;
+}
+
+#btn-topo:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(180, 110, 255, 0.6);
+  background: linear-gradient(135deg, rgba(160, 90, 255, 0.95), rgba(255, 210, 255, 0.8));
+}
+
+/* Animação de brilho pulsante */
+@keyframes brilho-botao {
+  0%, 100% { box-shadow: 0 0 15px rgba(150, 80, 255, 0.3); }
+  50% { box-shadow: 0 0 25px rgba(180, 110, 255, 0.6); }
+}
+#btn-topo {
+  animation: brilho-botao 3s ease-in-out infinite;
+}
+/* ===== Partículas do Hero ===== */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(178, 108, 255, 0.5);
+  border-radius: 50%;
+  animation: floatParticle 12s linear infinite;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ===== Comentário dos Projetos ===== */
+.project-comment-box {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(178, 108, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  color: #ccc;
+  opacity: 0;
+  transition: all 0.5s ease;
+  transform: translateY(15px);
+}
+
+.project-comment-box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== Animação ao aparecer ===== */
+.animate-show {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.card,
+.project-card,
+.services h2 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
